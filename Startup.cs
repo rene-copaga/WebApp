@@ -33,8 +33,9 @@ namespace WebApp
         public void Configure(IApplicationBuilder app, DataContext context)
         {
             app.UseDeveloperExceptionPage();
+            app.UseStaticFiles();
             app.UseRouting();
-
+            app.UseMiddleware<TestMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
