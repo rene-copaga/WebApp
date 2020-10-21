@@ -44,11 +44,11 @@ namespace WebApp.Controllers
             return $"JSON: {product.Name}";
         }
 
-        [HttpPost]
-        [Consumes("application/xml")]
-        public string SaveProductXml(ProductBindingTarget product)
-        {
-            return $"XML: {product.Name}";
-        }
+        //[HttpPost]
+        //[Consumes("application/xml")]
+        //public string SaveProductXml(ProductBindingTarget product)
+        //{
+        //    return $"XML: {product.Name}";
+        //}
     }
 }
