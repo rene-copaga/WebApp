@@ -33,18 +33,22 @@ namespace WebApp
             });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.Cookie.IsEssential = true;
+            });
         }
 
         public void Configure(IApplicationBuilder app, DataContext context)
         {
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseRouting();
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
                 endpoints.MapDefaultControllerRoute();
-                //endpoints.MapControllerRoute("Default", 
-                //    "{controller=Home}/{action=Index}/{id?}");
             });
             SeedData.SeedDatabase(context);
         }
