@@ -33,6 +33,7 @@ namespace WebApp
             });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
@@ -49,6 +50,7 @@ namespace WebApp
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
             SeedData.SeedDatabase(context);
         }
