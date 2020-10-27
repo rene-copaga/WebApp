@@ -32,19 +32,8 @@ namespace WebApp
                 "ConnectionStrings:ProductConnection"]);
                 opts.EnableSensitiveDataLogging(true);
             });
-
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
-
-            services.AddDistributedMemoryCache();
-            services.AddSession(options => {
-                options.Cookie.IsEssential = true;
-            });
-
-            services.Configure<RazorPagesOptions>(opts => {
-                opts.Conventions.AddPageRoute("/Index", "/extra/page/{id:long?}");
-            });
-
             services.AddSingleton<CitiesData>();
         }
 
@@ -52,7 +41,6 @@ namespace WebApp
         {
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
-            app.UseSession();
             app.UseRouting();
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
