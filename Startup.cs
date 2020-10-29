@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WebApp.Models;
+using WebApp.TagHelpers;
 
 namespace WebApp
 {
@@ -32,27 +34,17 @@ namespace WebApp
                 "ConnectionStrings:ProductConnection"]);
                 opts.EnableSensitiveDataLogging(true);
             });
-
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
-
-            services.AddDistributedMemoryCache();
-            services.AddSession(options => {
-                options.Cookie.IsEssential = true;
-            });
-
-            services.Configure<RazorPagesOptions>(opts => {
-                opts.Conventions.AddPageRoute("/Index", "/extra/page/{id:long?}");
-            });
-
             services.AddSingleton<CitiesData>();
+            services.AddTransient<ITagHelperComponent, TimeTagHelperComponent>();
+            services.AddTransient<ITagHelperComponent, TableFooterTagHelperComponent>();
         }
 
         public void Configure(IApplicationBuilder app, DataContext context)
         {
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
-            app.UseSession();
             app.UseRouting();
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
