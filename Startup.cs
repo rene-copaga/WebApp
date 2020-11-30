@@ -1,20 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using WebApp.Models;
-using WebApp.TagHelpers;
+//using Microsoft.AspNetCore.Razor.TagHelpers;
+//using WebApp.TagHelpers;
 
 namespace WebApp
 {
@@ -37,8 +27,8 @@ namespace WebApp
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddSingleton<CitiesData>();
-            services.AddTransient<ITagHelperComponent, TimeTagHelperComponent>();
-            services.AddTransient<ITagHelperComponent, TableFooterTagHelperComponent>();
+            //services.AddTransient<ITagHelperComponent, TimeTagHelperComponent>();
+            //services.AddTransient<ITagHelperComponent, TableFooterTagHelperComponent>();
         }
 
         public void Configure(IApplicationBuilder app, DataContext context)
