@@ -18,12 +18,13 @@ namespace WebApp.Controllers
             context = dbContext;
         }
 
-        public async Task<IActionResult> Index(long id = 1)
+        public async Task<IActionResult> Index(long? id)
         {
             ViewBag.Categories
                 = new SelectList(context.Categories, "CategoryId", "Name");
             return View("Form", await context.Products.Include(p => p.Category)
-                .Include(p => p.Supplier).FirstAsync(p => p.ProductId == id));
+                .Include(p => p.Supplier)
+                .FirstOrDefaultAsync(p => id == null || p.ProductId == id));
         }
 
         public IActionResult SubmitForm(string name, decimal price)
