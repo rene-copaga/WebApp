@@ -41,7 +41,7 @@ namespace WebApp.Controllers
             return View(TempData);
         }
 
-        public string Header([FromHeader] string accept)
+        public string Header([FromHeader(Name = "Accept-Language")] string accept)
         {
             return $"Header: {accept}";
         }
