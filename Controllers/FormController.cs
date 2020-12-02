@@ -27,9 +27,10 @@ namespace WebApp.Controllers
                 .FirstOrDefaultAsync(p => id == null || p.ProductId == id));
         }
 
-        public IActionResult SubmitForm(Product product)
+        [HttpPost]
+        public IActionResult SubmitForm(Category category)
         {
-            TempData["product"] = System.Text.Json.JsonSerializer.Serialize(product);
+            TempData["category"] = System.Text.Json.JsonSerializer.Serialize(category);
             return RedirectToAction(nameof(Results));                    
         }
 
