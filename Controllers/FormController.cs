@@ -40,5 +40,10 @@ namespace WebApp.Controllers
         {
             return View(TempData);
         }
+
+        public string Header([FromHeader] string accept)
+        {
+            return $"Header: {accept}";
+        }
     }
 }
