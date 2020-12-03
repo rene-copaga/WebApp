@@ -12,9 +12,13 @@ namespace WebApp.Models
     {
         public long ProductId { get; set; }
 
+        [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
+
         [Column(TypeName = "decimal(8, 2)")]
-        //[BindNever]
+        [Required(ErrorMessage = "Please enter a price")]
+        [Range(1, 999999, ErrorMessage = "Please enter a positive price")]
         public decimal Price { get; set; }
 
         public long CategoryId { get; set; }
